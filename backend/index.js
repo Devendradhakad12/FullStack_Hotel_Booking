@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import roomRoute from "./routes/rooms.js";
 import userRoute from "./routes/auth.js";
+import cookieParser from "cookie-parser";
+import cors from 'cors';
 dotenv.config();
 const app = express();
 
@@ -24,7 +26,8 @@ mongoose.connection.on("connected", () => {
 
 
 // routes
-
+app.use(cors())
+app.use(cookieParser())
 app.use(express.json())
 app.use('/api/rooms',roomRoute)
 app.use('/api/user',userRoute)

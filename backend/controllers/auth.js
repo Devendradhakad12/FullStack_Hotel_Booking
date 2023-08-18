@@ -1,5 +1,10 @@
 import UserSchema from "../models/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import env from "dotenv";
+ 
+env.config();
+// register
 export const register = async (req, res, next) => {
   try {
     const finduser = await UserSchema.findOne({ username: req.body.username });
@@ -20,4 +25,24 @@ export const register = async (req, res, next) => {
     next(error);
   }
 };
-export const login = async (req, res, next) => {};
+
+// login
+export const login = async (req, res, next) => {
+  try {
+    const user = await UserSchema.findOne({ username: req.body.username });
+    if (!user) return res.status(400).send("User Not exist please register");
+    const passCompare = await bcrypt.compare(req.body.password, user.password);
+    if (!passCompare) return res.status(400).send("wrong username or password");
+    const { password, isAdmin, ...otherdetails } = user._doc;
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT_SECRET
+    );
+    res
+      .cookie("access_token", token, { httpOnly: true })
+      .status(200)
+      .json({ details: { ...otherdetails }, isAdmin });
+  } catch (error) {
+    next(error);
+  }
+};
