@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import roomRoute from "./routes/rooms.js";
+import userRoute from "./routes/auth.js";
 dotenv.config();
 const app = express();
 
@@ -26,6 +27,7 @@ mongoose.connection.on("connected", () => {
 
 app.use(express.json())
 app.use('/api/rooms',roomRoute)
+app.use('/api/user',userRoute)
 
 app.use((err,req,res,next)=>{
   const errStatus = err.status || 500

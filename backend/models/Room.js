@@ -27,6 +27,11 @@ const RoomSchema = new mongoose.Schema({
   },
   unavailableDates:{
     type:[Date]
+  },
+  booking:{
+    type:Boolean,
+    default:false
   }
 },{timestamps:true});
 export default mongoose.model("Room", RoomSchema);
+ 
