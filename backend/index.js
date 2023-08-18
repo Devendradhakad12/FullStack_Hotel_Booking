@@ -2,7 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import roomRoute from "./routes/rooms.js";
-import userRoute from "./routes/auth.js";
+import authRoute from "./routes/auth.js";
+import userRoute from "./routes/user.js";
 import cookieParser from "cookie-parser";
 import cors from 'cors';
 dotenv.config();
@@ -31,6 +32,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use('/api/rooms',roomRoute)
 app.use('/api/user',userRoute)
+app.use('/api/auth',authRoute)
 
 app.use((err,req,res,next)=>{
   const errStatus = err.status || 500
