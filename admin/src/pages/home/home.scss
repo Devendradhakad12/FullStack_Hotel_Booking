@@ -1,0 +1,67 @@
+ .home {
+     display: flex;
+
+     .homeContainer {
+         flex: 6;
+
+         .container {
+             margin: 20px;
+
+             .widgetsContainer {
+                 display: flex;
+                 justify-content: space-evenly;
+                 margin-top: 30px;
+                 gap: 20px;
+
+                 .widgets {
+                     height: 100px;
+                     box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.144);
+                     border-radius: 20px;
+                     display: flex;
+                     flex-direction: column;
+                     justify-content: space-between;
+                     flex: 1;
+                     padding: 20px;
+                     color: rgba(0, 0, 0, 0.714);
+                    .topW{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .wP{
+                            font-size: 20px;
+                            font-weight: 500;
+                        }
+                        .wIcon{
+                            color: rgba(255, 0, 0, 0.81);
+                            background-color: rgba(255, 0, 0, 0.204);
+                            padding: 5px;
+                            border-radius: 10px;
+                            font-size: 20px;
+                        }
+                    }
+                    .boW{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;  
+                        div{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .boWAmount{
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                 }
+             }
+
+             .chartContainer {
+                 display: flex;
+                 justify-content: space-between;
+                 gap: 20px;
+                 padding: 20px;
+             }
+         }
+     }
+ }

@@ -1,0 +1,19 @@
+.chart {
+    flex: 4;
+    box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.144);
+    border-radius: 10px;
+    padding: 20px;
+
+
+    .top {
+        h3 {
+            font-weight: 500;
+        }
+
+        display: flex;
+        justify-content: space-between;
+        color: rgba(0, 0, 0, 0.651);
+
+    }
+
+}
