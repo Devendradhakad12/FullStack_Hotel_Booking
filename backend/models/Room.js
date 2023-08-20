@@ -4,7 +4,7 @@ const RoomSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-  },
+  }, 
   ac: {
     type: Boolean,
     required: true,

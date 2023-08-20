@@ -48,8 +48,18 @@ export const bookedRoom = async (req, res, next) => {
     let updatedRoom =  await RoomSchema.find({booking:booked});
     res.status(200).json(updatedRoom) 
   } catch (err) {
-     next(err)
+     next(err) 
   }
+};
+ 
+// delete booked room
+export const bookedRoomDelete = async (req, res, next) => {
+  try {
+    await RoomSchema.findByIdAndDelete(req.params.id);
+   res.status(200).json("room deleted");
+ } catch (err) {
+   next(err)
+ }
 };
  
 // get ac room

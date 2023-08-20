@@ -1,9 +1,15 @@
 import express  from 'express';
-import { getUser } from '../controllers/user.js';
+import { deleteUser, getUser, getallUser } from '../controllers/user.js';
 import { verifyUser } from '../utils/verifyUser.js';
 const router = express.Router()
 
 //get user
-router.get('/:id',verifyUser,getUser)
+router.get('/:id',getUser)//verifyUser,
 
-export default router
+// get all user
+router.get('/',getallUser)//verifyAdmin
+
+// delete user
+router.delete('/:id',deleteUser)//verifyAdmin
+
+export default router 
