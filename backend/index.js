@@ -31,7 +31,7 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 app.use('/api/rooms',roomRoute)
-app.use('/api/users',userRoute)
+app.use('/api/users',userRoute) 
 app.use('/api/auth',authRoute)
 
 app.use((err,req,res,next)=>{

@@ -1,0 +1,33 @@
+.new {
+    display: flex;
+
+    .newContainer {
+        flex: 6;
+
+        .newHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+
+            h2 {
+                text-transform: capitalize;
+                color: rgba(0, 0, 0, 0.722);
+            }
+
+            .addnewLink {
+                text-decoration: none;
+                border: 1px solid rgba(76, 14, 209, 0.749);
+                padding: 8px 14px;
+                border-radius: 10px;
+                font-size: 18px;
+                color: blueviolet;
+                font-weight: 600;
+                text-transform: capitalize;
+                &:hover{
+                    background-color: rgba(132, 0, 255, 0.089);
+                }
+            }
+        }
+    }
+}

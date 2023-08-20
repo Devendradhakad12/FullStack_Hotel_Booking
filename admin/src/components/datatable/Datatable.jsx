@@ -63,7 +63,7 @@ function Datatable({ columns }) {
   return (
     <div className="dataTable">
       <div className="dataTableTitle">
-        <h2>{path}</h2>{" "}
+        <h2>{path}</h2> 
         <Link className="linkNewUser" to={`/${path}/new`}>
           new {path}
         </Link>
