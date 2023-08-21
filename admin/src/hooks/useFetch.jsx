@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:6600/api/${url}`);
+        const res = await axios.get(`http://localhost:6600/api${url}`);
         setData(res.data);
         setLoading(false);
       } catch (error) {

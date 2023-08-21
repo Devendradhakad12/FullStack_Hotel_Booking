@@ -21,17 +21,16 @@ function NewUser({ inputs }) {
       data.append("cloud_name", "dvkfio4zq");
       setLoading(true);
       try {
-        /*  const uploadRes = await axios.post(
+         const uploadRes = await axios.post(
       "https://api.cloudinary.com/v1_1/dvkfio4zq/image/upload",
       data
-    ); */
+    );
         //   console.log(uploadRes.data.secure_url);
-        //  const url = uploadRes.data.secure_url;
+          const url = uploadRes.data.secure_url;
         const newUser = {
           ...user,
-          //  image: url,
+           image: url,
         };
-
         const res = await axios.post(
           "http://localhost:6600/api/auth/ragister",
           newUser
@@ -40,10 +39,10 @@ function NewUser({ inputs }) {
         setLoading(false);
         console.log("user creater");
       } catch (err) {
-        alert(err.response.data.message);
-        console.log(err);
         setLoading(false);
+        alert(err == undefined ? err.response.data.message : "Network Error");
       }
+      setLoading(false);
     } else {
       alert("please select image");
     }
@@ -97,7 +96,7 @@ function NewUser({ inputs }) {
                   value={user.id}
                   required
                   onChange={(e) => {
-                    setUser({ ...user, [e.target.id]: e.target.value });
+                  setUser({ ...user, [e.target.id]: e.target.value });
                   }}
                 />
               </div>

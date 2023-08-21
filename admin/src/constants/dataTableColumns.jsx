@@ -13,6 +13,19 @@ export const userColumns = [
         );
       },  */ 
     },
+    {
+      field: "image",
+      headerName: "Image",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div className="cellWithImg">
+            <img className="cellImg" src={params.row.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt="avatar" style={{width:"40px",height:"40px",borderRadius:"50%",display:"flex",justifyContent:"center",alignItems:"center"}} />
+ 
+          </div>
+        );
+      },  
+    },
     { 
       field: "email",
       headerName: "Email",

@@ -21,11 +21,31 @@ export const getRoom = async (req, res, next) => {
   }
 };
 
+// get booked room
+export const bookedRoom = async (req, res, next) => {
+  try {
+    const  bookrooms = await RoomSchema.find({booking:true});
+    res.status(200).json(bookrooms);
+  } catch (err) {
+    next(err)
+  }
+};
+
 // delete room
 export const deleteRoom = async (req, res, next) => {
   try {
      await RoomSchema.findByIdAndDelete(req.params.id);
     res.status(200).json("room deleted");
+  } catch (err) {
+    next(err)
+  }
+}; 
+
+// get room by id room
+export const getbyidRoom = async (req, res, next) => {
+  try {
+   let room =  await RoomSchema.findById(req.params.id);
+    res.status(200).json(room);
   } catch (err) {
     next(err)
   }
@@ -40,17 +60,8 @@ export const updateRoom = async (req, res, next) => {
      next(err)
   }
 };
- 
-// get booked room
-export const bookedRoom = async (req, res, next) => {
-  const booked = req.query.booking
-  try {
-    let updatedRoom =  await RoomSchema.find({booking:booked});
-    res.status(200).json(updatedRoom) 
-  } catch (err) {
-     next(err) 
-  }
-};
+  
+
  
 // delete booked room
 export const bookedRoomDelete = async (req, res, next) => {

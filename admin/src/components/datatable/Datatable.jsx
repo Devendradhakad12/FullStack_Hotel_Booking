@@ -9,8 +9,8 @@ function Datatable({ columns }) {
   const path = useLocation().pathname.split("/")[1];
   const { data, loading, error } =
     path === "bookedrooms"
-      ? useFetch(`rooms/bookedroom?booking=true`)
-      : useFetch(`${path}`);
+      ? useFetch(`/rooms/booked`)
+      : useFetch(`/${path}`);
 
   const [list, setList] = useState([]);
   //console.log(error);
@@ -18,14 +18,14 @@ function Datatable({ columns }) {
     setList(data);
   }, [data]);
   //console.log(list);
-
+ 
   const handleDelete = async (id) => {
     let ask = confirm(`Do you want to delete this ${path}`);
     if (ask) {
       try {
         path === "bookedrooms"
           ? await axios.delete(`http://localhost:6600/api/rooms/${path}/${id}`)
-          : await axios.delete(`http://localhost:6600/api/${path}/${id}`);
+          : await axios.delete(`http://localhost:6600/api/${path}/delete/${id}`);
         setList(list.filter((item) => item._id !== id));
         alert(`${path} deleted`);
       } catch (error) {
@@ -36,7 +36,7 @@ function Datatable({ columns }) {
       alert(`${path} not deleted`);
     }
   };
-
+ 
   const actionColumn = [
     {
       field: "action",
@@ -45,7 +45,7 @@ function Datatable({ columns }) {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -93,7 +93,7 @@ function Datatable({ columns }) {
               }}
               initialState={{
                 ...data.initialState,
-                pagination: { paginationModel: { pageSize: 5 } },
+                pagination: { paginationModel: { pageSize: 10 } },
               }}
               pageSizeOptions={[5, 10, 25]}
             />

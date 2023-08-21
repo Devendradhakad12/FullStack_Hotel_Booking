@@ -26,7 +26,7 @@ mongoose.connection.on("connected", () => {
 
 
 
-// routes
+// routes 
 app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
