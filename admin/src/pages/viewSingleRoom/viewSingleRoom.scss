@@ -1,0 +1,48 @@
+.view {
+    display: flex;
+
+    .viewContainer {
+        flex: 6;
+
+        .viewDataContainer{
+          //  background-color: red;
+            width: 1000px;
+            margin: auto;
+            margin-top: 30px;
+            padding: 50px;
+            .DataContainer{
+             //  background-color: green;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                .imgDiv{
+                  //  background-color: red;
+                    img{
+                        width: 250px;
+                        height: 250px;
+                        border-radius: 50%;
+                    }
+                    margin-right: 50px;
+                }
+                .infoDiv{
+                  //  background-color: red;
+                    font-size: 27px;
+                    padding-left: 150px;
+                    margin-top: 40px;
+                    line-height: 50px;
+                    div{
+                        text-transform: capitalize;
+                        span{
+                            font-weight: 700;
+                            margin-right: 15px;
+                        }
+                    }
+                   
+                }
+            }
+        }
+       
+    }
+}
