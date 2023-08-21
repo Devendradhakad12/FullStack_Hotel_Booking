@@ -11,7 +11,7 @@ export const userInputs = [
       label: "Email", 
       type: "email",
       placeholder: "email@gmail.com",
-    },
+    }, 
     {
         id: "password",
         label: "Password",
@@ -47,10 +47,10 @@ export const userInputs = [
       placeholder: "title",
     },
     {
-      id: "desc",
-      label: "Description",
-      type: "text",
-      placeholder: "Description",
+      id: "maxPeople",
+      label: "maxPeople",
+      type: "number",
+      placeholder: "maxPeople",
     },
    
     {
@@ -60,10 +60,10 @@ export const userInputs = [
       placeholder: "100",
     },
     {
-      id:"maxPeople",
-      label: "maxPeople",
+      id:"roomNumber",
+      label: "Room Number",
       type: "number",
-      placeholder: "maxPeople",
+      placeholder: "Room Number",
     },
   ];
   

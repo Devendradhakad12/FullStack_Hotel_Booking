@@ -4,14 +4,6 @@ export const userColumns = [
       field: "username",
       headerName: "User",
       width: 150,
-   /*    renderCell: (params) => {
-        return (
-          <div className="cellWithImg">
-            <img className="cellImg" src={params.row.img || "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg"} alt="avatar" />
-            {params.row.username}
-          </div>
-        );
-      },  */ 
     },
     {
       field: "image",

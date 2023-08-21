@@ -15,7 +15,7 @@ function ViewSingle() {
       <Sidebar />
       <div className="viewContainer">
         <Navbar />
-
+ 
         <div className="viewDataContainer">
           {
             loading ? "loading ............" : <div className="DataContainer">

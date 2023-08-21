@@ -19,7 +19,7 @@ function ViewSingleRoom() {
         <div className="viewDataContainer">
           {
             loading ? "loading ............" : <div className="DataContainer">
-          <div className="imgDiv"><img src={data.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt="user image"  /></div>
+          <div className="imgDiv">{data.photos?.map((img,i)=>(<img key={i} src={img || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt="user image" className="bookedroomimg" />))}</div>
           <div className="infoDiv">
                 <div><span>Title : </span> {data.title}</div>
                 <div><span>Price : </span> {data.price} p/n</div>
@@ -31,7 +31,7 @@ function ViewSingleRoom() {
 
           }
         </div>
-      </div>
+      </div> 
     </div>
   );
 }

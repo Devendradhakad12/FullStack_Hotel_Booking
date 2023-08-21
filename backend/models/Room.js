@@ -19,7 +19,7 @@ const RoomSchema = new mongoose.Schema({
   },
   roomNumber: {
     unique:true,
-    type: Number,
+    type: Number, 
     required: true,
   },
   photos: {

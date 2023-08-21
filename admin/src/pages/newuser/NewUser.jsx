@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FileUploadOutlined } from "@mui/icons-material";
 import axios from "axios";
 
@@ -11,7 +11,8 @@ function NewUser({ inputs }) {
   const [file, setFile] = useState("");
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
+  
   const habdleSubmit = async (e) => {
     if (file) {
       e.preventDefault();
@@ -43,6 +44,7 @@ function NewUser({ inputs }) {
         alert(err == undefined ? err.response.data.message : "Network Error");
       }
       setLoading(false);
+      navigate(`/${path}`)
     } else {
       alert("please select image");
     }
@@ -56,7 +58,7 @@ function NewUser({ inputs }) {
         <div className="newHeader">
           <h2>add new {path} </h2>
           <Link to={`/${path}`} className="addnewLink">
-            All {path}
+            All {path} 
           </Link>
         </div>
 

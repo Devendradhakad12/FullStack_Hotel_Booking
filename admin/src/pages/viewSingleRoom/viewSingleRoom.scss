@@ -18,11 +18,13 @@
                 align-items: center;
                 flex-direction: column;
                 .imgDiv{
-                  //  background-color: red;
-                    img{
+                   // background-color: red;
+                    .bookedroomimg{
+                        object-fit: cover;
                         width: 250px;
-                        height: 250px;
-                        border-radius: 50%;
+                        height: 250px; 
+                        margin: 2px 10px;
+                        border-radius: 10px;
                     }
                     margin-right: 50px;
                 }

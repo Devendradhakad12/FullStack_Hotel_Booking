@@ -6,7 +6,7 @@ import { verifyAdmin } from "../utils/verifyUser.js"
  const router = express.Router()
  
  //create room
- router.post("/create",verifyAdmin, createRoom)
+ router.post("/create", createRoom)//verifyAdmin,
 
  //get room
  router.get("/",getRoom) 
