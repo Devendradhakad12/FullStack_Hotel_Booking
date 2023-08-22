@@ -1,0 +1,144 @@
+.mainBodyDiv {
+    background: linear-gradient(rgba(3, 47, 136, 0.618), rgba(94, 4, 74, 0.974), rgb(0, 125, 98))center center/cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 1000px;
+.alert{
+    margin:  15px auto;
+    width: 50%;
+}
+
+    .center {
+        padding: 30px 20px;
+        background-color: rgba(47, 10, 228, 0.163);
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px;
+        border: 1px solid rgb(0, 255, 8);
+        height: fit-content;
+        width:500px;
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid;
+            padding-bottom: 20px;
+            font-family: 'Ubuntu', sans-serif;
+            color: rgba(159, 232, 107, 0.999);
+
+        }
+
+        .userInputs {
+        //    width: 800px;
+            margin: auto;
+            height: 100%;
+
+            .uesrImgUp {
+                text-align: center;
+                margin-top: 20px;
+
+                label {
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    font-weight: 700;
+                    color: rgba(0, 0, 0, 0.874);
+                    font-size: 20px;
+                    align-items: center;
+                    margin-top: 5px;
+                    letter-spacing: 3px;
+                    flex-direction: column;
+                    color: white;
+
+                    .userImage {
+                        width: 150px;
+                        height: 150px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+
+                    p {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-top: 20px;
+                    }
+                }
+            }
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+
+            form {
+                color: white;
+                padding-top: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: space-around;
+
+                .formInput {
+                    width: 40%;
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .icon {
+                            cursor: pointer;
+                        }
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 5px;
+                        border: none;
+                        border-bottom: 1px solid rgb(236, 230, 230);
+                        outline: none;
+                        background: transparent;
+                        color: white;
+      
+                    }
+                                      
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                -webkit-background-clip: text;
+                -webkit-text-fill-color:white;
+                transition: background-color 5000s ease-in-out 0s;
+                box-shadow: inset 0 0 20px 20px #1504580c;
+            }
+                }
+
+                button {
+                    width: 80%;
+                    height: 40px;
+                    background: linear-gradient(rgb(37, 94, 208), rgb(62, 107, 221), rgb(18, 25, 52))center center/cover;
+                    border: none;
+                    border-radius: 30px;
+                    font-size: 20px;
+                    color: antiquewhite;
+                    font-weight: 700;
+                    transition-duration: .5s;
+                    margin: 25px 0px;
+                    cursor: pointer;
+    
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+
+
+    }
+}

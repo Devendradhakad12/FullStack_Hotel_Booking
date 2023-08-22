@@ -6,13 +6,13 @@ import { verifyAdmin } from "../utils/verifyUser.js"
  const router = express.Router()
  
  //create room
- router.post("/create", createRoom)//verifyAdmin,
+ router.post("/create",verifyAdmin, createRoom)
 
  //get room
- router.get("/",getRoom) 
+ router.get("/",verifyAdmin,getRoom) 
 
  //delete room
- router.delete("/delete/:id",deleteRoom)//verifyAdmin,
+ router.delete("/delete/:id",verifyAdmin,deleteRoom)//verifyAdmin,
 
  //get by id room
  router.get("/getbyid/:id",getbyidRoom) 
@@ -29,4 +29,4 @@ import { verifyAdmin } from "../utils/verifyUser.js"
  // get ac room
  router.get("/acroom",acRoom)
  
- export default router  
+ export default router   

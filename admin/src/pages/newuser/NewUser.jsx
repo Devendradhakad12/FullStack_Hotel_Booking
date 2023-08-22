@@ -8,7 +8,7 @@ import axios from "axios";
 
 function NewUser({ inputs }) {
   let path = useLocation().pathname.split("/")[1];
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(""); 
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

@@ -23,7 +23,7 @@ export const getRoom = async (req, res, next) => {
 
 // get booked room
 export const bookedRoom = async (req, res, next) => {
-  try {
+  try { 
     const  bookrooms = await RoomSchema.find({booking:true});
     res.status(200).json(bookrooms);
   } catch (err) {

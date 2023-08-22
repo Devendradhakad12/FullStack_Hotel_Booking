@@ -34,10 +34,10 @@ export const login = async (req, res, next) => {
     const passCompare = await bcrypt.compare(req.body.password, user.password);
     if (!passCompare) return res.status(400).send("wrong username or password");
     const { password, isAdmin, ...otherdetails } = user._doc;
-    const token = jwt.sign(
+    const token = jwt.sign( 
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT_SECRET
-    );
+    ); 
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
