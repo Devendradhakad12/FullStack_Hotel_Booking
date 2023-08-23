@@ -3,6 +3,7 @@ import "./feature.scss";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { MoreVertSharp } from "@mui/icons-material";
 import "react-circular-progressbar/dist/styles.css";
+
 function Feature() {
   return (
     <div className="feature">

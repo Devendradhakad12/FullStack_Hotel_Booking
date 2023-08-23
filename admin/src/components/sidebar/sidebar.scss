@@ -1,3 +1,4 @@
+@import "../../colors";
 .sidebar {
     display: flex;
     flex: 1;
@@ -18,7 +19,7 @@
                 font-weight: 700;
                 font-size: 20px;
                 margin: 20px;
-                color: rgb(137, 43, 226);
+                color: $primary;
             }
         }
         .sidebarMenu{
@@ -30,7 +31,7 @@
                 padding-bottom: 10px;
                 align-items: center;
                 .icon{
-                    color: rgb(137, 43, 226);  
+                    color: $primary;  
                     font-size: 18px;
                 }
                 span{
