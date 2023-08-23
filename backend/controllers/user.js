@@ -12,7 +12,7 @@ export const getUser = async (req, res, next) => {
 //  get all users
 export const getallUser = async (req, res, next) => {
   try {
-    const user = await User.find();
+    const user = await User.find({adminId:req.user.id});
     res.status(200).json(user);
   } catch (error) {
     next(error);

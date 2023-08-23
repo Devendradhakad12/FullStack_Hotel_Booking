@@ -25,7 +25,7 @@ dispatch({type:"LOGOUT"})
      try {
       const res = await axios.post("http://localhost:6600/api/auth/login",userdata)
       if(res.data.isAdmin){
-        dispatch({type:"LOGIN_SUCCESS",payload:res.data.details})
+        dispatch({type:"LOGIN_SUCCESS",payload:res.data.details,token:res.data.authToken})
         navigate('/')
       }else{
         dispatch({type:"LOGIN_FAIL",payload:{message:"You are not authorized"}})
@@ -39,7 +39,7 @@ dispatch({type:"LOGOUT"})
      // console.log(error)
      }
   };
-
+ 
   return (
     <div className="mainBodyDiv">
        {error ? <Alert severity="error" className="alert">{error.message}</Alert> : ""}

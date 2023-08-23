@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
-  {
+  { 
+    adminId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "adminId",
+    },
     username: {
       unique: true,
       type: String,
@@ -34,7 +38,7 @@ const UserSchema = new mongoose.Schema(
     isAdmin:{
         type:Boolean,
         default:false
-    }
+    } 
   } 
 );
 export default mongoose.model("User", UserSchema);

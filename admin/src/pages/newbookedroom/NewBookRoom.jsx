@@ -5,56 +5,64 @@ import Navbar from "../../components/navbar/Navbar";
 import { Link, useLocation } from "react-router-dom";
 import { FileUploadOutlined } from "@mui/icons-material";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function NewBookedRoom({ inputs }) {
   const path = useLocation().pathname.split("/")[1];
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({});
   const [file, setFile] = useState("");
+  const { token } = useContext(AuthContext);
+
+  const config = {
+    headers: {
+      "auth-token": token,
+    },
+  };
 
   const habdleSubmit = async (e) => {
     e.preventDefault();
- if(file){
-  setLoading(true);
-  try {
-    const imgList = await Promise.all(
-      Object.values(file).map(async (file) => {
-        const data = new FormData();
-        data.append("file", file);
-        data.append("upload_preset", "ko8fnbhn");
-        data.append("cloud_name", "dvkfio4zq");
-        const uploadRes = await axios.post(
-          "https://api.cloudinary.com/v1_1/dvkfio4zq/image/upload",
-          data
+    if (file) {
+      setLoading(true);
+      try {
+        const imgList = await Promise.all(
+          Object.values(file).map(async (file) => {
+            const data = new FormData();
+            data.append("file", file);
+            data.append("upload_preset", "ko8fnbhn");
+            data.append("cloud_name", "dvkfio4zq");
+            const uploadRes = await axios.post(
+              "https://api.cloudinary.com/v1_1/dvkfio4zq/image/upload",
+              data
+            );
+            const url = uploadRes.data.secure_url;
+            //   console.log(uploadRes.data.secure_url);
+            return url;
+          })
         );
-        const url = uploadRes.data.secure_url;
-        //   console.log(uploadRes.data.secure_url);
-        return url;
-      })
-    );
-    const roomData = {
-      ...room,
-      booking:true,
-      photos: imgList,
-    };
-    const res = await axios.post(
-      "http://localhost:6600/api/rooms/create",
-      roomData
-    );
-    alert("Room Created");
-    console.log(res.data);
-    setLoading(false);
-    window.location.reload(true)
-  } catch (error) {
-    console.log(error);
-    alert(error.message);
-    setLoading(false);
-  }
- 
- }
- else{
-    alert("upload images")
- }
+        const roomData = {
+          ...room,
+          booking: true,
+          photos: imgList,
+        };
+        const res = await axios.post(
+          "http://localhost:6600/api/rooms/create",
+          roomData,
+          config 
+        );
+        alert("Room Created");
+        console.log(res.data);
+        setLoading(false);
+        window.location.reload(true);
+      } catch (error) {
+        console.log(error);
+        alert(error.response.data);
+        setLoading(false);
+      }
+    } else {
+      alert("upload images");
+    }
   };
 
   return (
@@ -81,20 +89,6 @@ function NewBookedRoom({ inputs }) {
                 alt="user image"
                 className="userImage"
               />
-              {/*    {(function (file) {
-                for (let i = 0; i < file.length; i++)
-                  <img
-                    src={
-                      file
-                        ? URL.createObjectURL(file[i])
-                        : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                    }
-                    alt="user image"
-                    className="userImage"
-                  />;
-                  //  console.log(i);
-              })(file)} */}
-
               <p>
                 Upload Image <FileUploadOutlined />*
               </p>
@@ -144,8 +138,5 @@ function NewBookedRoom({ inputs }) {
     </div>
   );
 }
-
- 
-
 
 export default NewBookedRoom;

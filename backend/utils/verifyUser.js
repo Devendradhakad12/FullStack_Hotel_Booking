@@ -5,7 +5,7 @@ env.config()
 
 // verify token
 export const verifyToken = async (req, res, next) => {
-    const token = req.cookies.access_token;
+    const token = req.header("auth-token");
     if(!token) return res.status(400).json("user not authenticeted")
      jwt.verify(token,process.env.JWT_SECRET,(err,user)=>{
     if(err) return res.send("token not vaild")
@@ -16,7 +16,6 @@ export const verifyToken = async (req, res, next) => {
 
 
 // verifyUser
- 
 export const verifyUser  = async (req,res,next)=>{
  verifyToken(req,res,()=>{
     if(req.user.id === req.params.id || req.user.isAdmin) {

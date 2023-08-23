@@ -12,7 +12,7 @@ function Datatable({ columns }) {
       ? useFetch(`/rooms/booked`)
       : useFetch(`/${path}`);
 
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([]); 
   //console.log(error);
   useEffect(() => {
     setList(data);

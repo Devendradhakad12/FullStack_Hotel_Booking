@@ -20,7 +20,29 @@ export const register = async (req, res, next) => {
       password: hash, 
     });
     await newUser.save();
-    res.status(200).send("user has been created");
+    res.status(200).send("user has been created"); 
+  } catch (error) {
+    next(error);
+  }
+};
+
+// create user
+export const createUser = async (req, res, next) => {
+  try {
+    const finduser = await UserSchema.findOne({ username: req.body.username });
+    const finduseremail = await UserSchema.findOne({ email: req.body.email });
+    const finduserphone = await UserSchema.findOne({ phone: req.body.phone });
+    if (finduser || finduseremail || finduserphone) return  next(createError(400,"user already exist"))
+    let password = req.body.password;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+    const newUser = new UserSchema({
+      ...req.body,
+      password: hash, 
+      adminId:req.user.id,
+    });
+    await newUser.save();
+    res.status(200).send("user has been created"); 
   } catch (error) {
     next(error);
   }
@@ -35,13 +57,13 @@ export const login = async (req, res, next) => {
     if (!passCompare) return res.status(400).send("wrong username or password");
     const { password, isAdmin, ...otherdetails } = user._doc;
     const token = jwt.sign( 
-      { id: user._id, isAdmin: user.isAdmin },
+      { id: user._id, isAdmin: user.isAdmin,adminId:user.adminId },
       process.env.JWT_SECRET
     ); 
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
-      .json({ details: { ...otherdetails }, isAdmin });
+      .json({ details: { ...otherdetails }, isAdmin, authToken:token });
   } catch (error) {
     next(error);
   }

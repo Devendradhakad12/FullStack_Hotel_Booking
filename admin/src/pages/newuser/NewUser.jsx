@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FileUploadOutlined } from "@mui/icons-material";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
 function NewUser({ inputs }) {
   let path = useLocation().pathname.split("/")[1];
@@ -12,7 +13,13 @@ function NewUser({ inputs }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
+  const { token } = useContext(AuthContext);
+
+  const config = {
+    headers: {
+      "auth-token": token,
+    },
+  };
   const habdleSubmit = async (e) => {
     if (file) {
       e.preventDefault();
@@ -33,8 +40,8 @@ function NewUser({ inputs }) {
            image: url,
         };
         const res = await axios.post(
-          "http://localhost:6600/api/auth/ragister",
-          newUser
+          "http://localhost:6600/api/auth/createuser",
+          newUser,config
         );
         alert("New user created");
         setLoading(false);

@@ -2,19 +2,19 @@ import RoomSchema from "../models/Room.js";
 
 // create room
 export const createRoom = async (req, res, next) => {
-  let room = new RoomSchema(req.body);
+  let room = new RoomSchema({...req.body,adminId:req.user.id});
   try {
     let savedroom = await room.save();
     res.status(200).json(savedroom);
   } catch (err) {
    next(err)
   }
-};
+}; 
 
 // get all room
 export const getRoom = async (req, res, next) => {
   try {
-    const rooms = await RoomSchema.find();
+    const rooms = await RoomSchema.find({adminId:req.user.id});
     res.status(200).json(rooms);
   } catch (err) {
     next(err)
@@ -24,7 +24,7 @@ export const getRoom = async (req, res, next) => {
 // get booked room
 export const bookedRoom = async (req, res, next) => {
   try { 
-    const  bookrooms = await RoomSchema.find({booking:true});
+    const  bookrooms = await RoomSchema.find({booking:true,adminId:req.user.id});
     res.status(200).json(bookrooms);
   } catch (err) {
     next(err)
