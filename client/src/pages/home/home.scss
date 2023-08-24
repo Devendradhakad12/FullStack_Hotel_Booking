@@ -1,0 +1,89 @@
+@use "../../styles/colors" as color;
+
+.homeMainDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: color.$gold;
+
+    .container {
+        position: relative;
+        line-height: 120px;
+        text-align: center;
+
+
+        .homeH1 {
+            h1 {
+                font-size: 5rem;
+            }
+        }
+
+        .homeP {
+            p {
+                font-size: 1.6rem;
+            }
+        }
+
+        .homeLinkDiv {
+            .hlink {
+                text-decoration: none;
+                color: black;
+                border: 1px solid rgba(0, 0, 0, 0.511);
+                padding: 7px 20px;
+                border-radius: 10px;
+                font-size: 17px;
+                background-color: color.$cream;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(122, 185, 241, 0.355);
+                }
+            }
+        }
+    }
+
+    .container::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 100px;
+        border-right: 6px solid rgb(3, 3, 3);
+        border-radius: 14px;
+        z-index: -2;
+
+
+    }
+}
+
+
+// media query----------------------------------------
+@media screen and (max-width:600px) {
+    .homeMainDiv {
+        .container {
+            position: relative;
+            line-height: 120px;
+            text-align: center;
+
+            .homeH1 {
+                h1 {
+                    font-size: 4rem;
+                }
+            }
+
+            .homeP {
+                p {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+
+        .container::before {
+            display: none;
+        }
+    }
+}

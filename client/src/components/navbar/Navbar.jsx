@@ -9,13 +9,18 @@ function Navbar() {
     <div className="navbarMain">
       <div className="navbar">
         <div className="logo">
-          <h1>Hotel Dev</h1>
+          <h1>Hotel Dev</h1> 
         </div>
         <div className="menu">
           <ul>
             <li>
-              <Link to="/home" className="link">
+              <Link to="/" className="link">
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/rooms" className="link">
+                Rooms
               </Link>
             </li>
             <li>
@@ -30,6 +35,8 @@ function Navbar() {
             </li>
           </ul>
         </div>
+
+
         <div className="menuMobile">
           <button onClick={() => setToggle(!toggle)}>
             {toggle ? (
@@ -38,14 +45,31 @@ function Navbar() {
               <MenuOpen className="btn" />
             )}
           </button>
+
+
           {toggle && (
             <motion.div className="lists"   initial={{ y: 300, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1,zIndex: 10 }}
             viewport={{ once: false }}>
-              <ul>
+              <div className="togl_under_menu">
+              <button onClick={() => setToggle(!toggle)}>
+            {toggle ? (
+              <CloseRounded className="btn" />
+            ) : (
+              <MenuOpen className="btn" />
+            )}
+          </button>
+              </div>
+             <div>
+             <ul>
                 <li>
                   <Link to="/" className="link" onClick={()=>setToggle(!toggle)}>
                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/rooms" className="link" onClick={()=>setToggle(!toggle)}>
+                    Rooms
                   </Link>
                 </li>
                 <li>
@@ -59,6 +83,7 @@ function Navbar() {
                   </Link>
                 </li>
               </ul>
+             </div>
             </motion.div>
           )}
         </div>
