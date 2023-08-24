@@ -1,0 +1,137 @@
+.mainBodyDiv {
+    background: linear-gradient(rgba(3, 47, 136, 0.618), rgba(94, 4, 74, 0.974), rgb(0, 125, 98))center center/cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+
+    .center {
+        padding: 30px 20px;
+        background-color: rgba(47, 10, 228, 0.163);
+        width: 100px;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px;
+        border: 1px solid rgb(0, 255, 8);
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid;
+            padding-bottom: 20px;
+            font-family: 'Ubuntu', sans-serif;
+            color: rgba(159, 232, 107, 0.999);
+
+        }
+
+        .usnam {
+            padding: 25px 50px;
+            font-size: 15px;
+
+            label {
+                color: rgb(247, 247, 247);
+                font-weight: 700;
+                font-size: 20px;
+            }
+
+            input {
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid;
+                padding-top: 10px;
+                padding-bottom: 12px;
+                outline: none;
+                font-size: 15px;
+                background-color: transparent;
+                color: rgb(251, 251, 251);
+                background: transparent;
+
+            }
+
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: white;
+                transition: background-color 5000s ease-in-out 0s;
+                box-shadow: inset 0 0 20px 20px #1504580c;
+            }
+        }
+
+        .pass {
+            padding: 10px 50px;
+            font-size: 15px;
+
+            label {
+                color: rgb(247, 247, 247);
+                font-weight: 700;
+                font-size: 20px;
+            }
+
+            input {
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid;
+                padding-top: 10px;
+                padding-bottom: 12px;
+                outline: none;
+                font-size: 15px;
+                background-color: transparent;
+                color: white;
+            }
+
+
+
+        }
+
+        .sub {
+            text-align: center;
+            padding: 20px;
+
+            button {
+                width: 80%;
+                height: 40px;
+                background: linear-gradient(rgb(37, 94, 208), rgb(62, 107, 221), rgb(18, 25, 52))center center/cover;
+                border: none;
+                border-radius: 30px;
+                font-size: 20px;
+                color: antiquewhite;
+                font-weight: 700;
+                transition-duration: .5s;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .sign {
+            text-align: center;
+            padding: 20px;
+            color: rgb(231, 192, 114);
+
+            a {
+                text-decoration: none;
+                color: rgb(32, 240, 9);
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width:600px) {
+    .mainBodyDiv{
+        .center{
+            width: 90%;
+        }
+    }
+}

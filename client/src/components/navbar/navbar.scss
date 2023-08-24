@@ -1,0 +1,100 @@
+@use "../../styles/colors" as color;
+
+.navbarMain {
+    background-color: color.$blue;
+    color: white;
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+
+        .logo {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .menu {
+            display: flex;
+
+            ul {
+                display: flex;
+                gap: 25px;
+
+                li {
+                    list-style: none;
+                    color: white;
+
+                    .link {
+                        color: white;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+        }
+
+        .menuMobile {
+            display: none;
+
+            button {
+                background: transparent;
+                color: white;
+                border: none;
+                width: 30px;
+                cursor: pointer;
+
+                .btn {
+                    font-size: 40px;
+                }
+            }
+
+            .lists {
+                position: absolute;
+                width: 40%;
+                height: 250px;
+                display: flex;
+                justify-content: center;
+                padding-top: 50px;
+                top: 65px;
+                right: 0;
+                line-height: 40px;
+                background-color: rgb(8, 90, 145);
+                border-radius: 0px 0px 10px 20px;
+
+                ul {
+                    li {
+                        list-style: none;
+
+                        .link {
+                            text-decoration: none;
+                            color: white;
+                            font-size: 24px;
+
+                            &:hover {
+                                color: rgb(189, 184, 184);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    .navbarMain {
+        .navbar {
+            .menu {
+                display: none;
+            }
+
+            .menuMobile {
+                display: flex;
+                z-index: 1;
+            }
+
+        }
+    }
+}
