@@ -24,6 +24,11 @@ function Navbar() {
               </Link>
             </li>
             <li>
+              <Link to="/delux" className="link">
+                Delux Rooms
+              </Link>
+            </li>
+            <li>
               <Link to="/login" className="link">
                 Login
               </Link>
@@ -70,6 +75,11 @@ function Navbar() {
                 <li>
                   <Link to="/rooms" className="link" onClick={()=>setToggle(!toggle)}>
                     Rooms
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/delux" className="link" onClick={()=>setToggle(!toggle)}>
+                    Delux Room
                   </Link>
                 </li>
                 <li>

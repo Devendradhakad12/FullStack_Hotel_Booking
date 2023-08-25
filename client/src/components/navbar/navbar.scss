@@ -68,10 +68,11 @@
 
                 position: absolute;
                 width: 40%;
-                height: 250px;
+                height: fit-content;
                 display: flex;
                 justify-content: center;
                 padding-top: 50px;
+                padding-bottom: 20px;
                 top: 0px;
                 right: 0;
                 line-height: 40px;
