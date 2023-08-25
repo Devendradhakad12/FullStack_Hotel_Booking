@@ -28,7 +28,7 @@ function Home() {
               visible: { opacity: 1, scale: 1 },
               hidden: { opacity: 0, scale: 3 },
             }}
-          >
+          > 
             <p>Best hotel of Mandsaur | Hotel Dev</p>
           </motion.div>
           <motion.div
