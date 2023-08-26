@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { MenuOpen, CloseRounded } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../context/AuthCotext";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
+  const {user,dispatch} = useContext(AuthContext)
+  const handleLogout = ()=>{
+    dispatch({type:"LOGOUT"})
+  }
   return (
     <div className="navbarMain">
       <div className="navbar">
@@ -23,16 +28,27 @@ function Navbar() {
                 Rooms
               </Link>
             </li>
-            <li>
-              <Link to="/login" className="link">
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup" className="link">
-                SignUp
-              </Link>
-            </li>
+        {
+          !user &&  <li>
+          <Link to="/login" className="link">
+            Login
+          </Link>
+        </li>
+        }
+           {
+            !user &&  <li>
+            <Link to="/signup" className="link">
+              SignUp
+            </Link>
+          </li>
+           }
+           {
+            user &&  <li>
+            <Link  onClick={handleLogout} className="link">
+              Logout
+            </Link>
+          </li>
+           }
           </ul>
         </div>
 
@@ -72,19 +88,30 @@ function Navbar() {
                     Rooms
                   </Link>
                 </li>
-                <li>
-                  <Link to="/login" className="link" onClick={()=>setToggle(!toggle)}>
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/signup" className="link" onClick={()=>setToggle(!toggle)}>
-                    SignUp
-                  </Link>
-                </li>
+              {
+                !user &&   <li>
+                <Link to="/login" className="link" onClick={()=>setToggle(!toggle)}>
+                  Login
+                </Link>
+              </li>
+              }
+              {
+                !user &&   <li>
+                <Link to="/signup" className="link" onClick={()=>setToggle(!toggle)}>
+                  SignUp
+                </Link>
+              </li>
+              }
+                {
+            user &&  <li>
+            <Link  onClick={()=>{handleLogout(); setToggle(!toggle); }} className="link">
+              Logout
+            </Link>
+          </li>
+           }
               </ul>
              </div>
-            </motion.div>
+            </motion.div> 
           )}
         </div>
       </div>

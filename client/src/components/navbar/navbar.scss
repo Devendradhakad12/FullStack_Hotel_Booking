@@ -4,7 +4,7 @@
     background-color: color.$blue;
     color: white;
     width: 100%;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 21;
 
@@ -104,7 +104,7 @@
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:650px) {
     .navbarMain {
         .navbar {
             .menu {
@@ -118,5 +118,5 @@
             }
 
         }
-    }
+    } 
 }

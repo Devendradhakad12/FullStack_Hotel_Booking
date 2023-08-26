@@ -21,7 +21,7 @@ import { verifyAdmin, verifyUser } from "../utils/verifyUser.js"
  router.get("/getbyid/:id",getbyidRoom) 
 
  //update room
- router.put("/updateroom/:id",verifyAdmin,updateRoom)
+ router.put("/updateroom/:id",verifyUser,updateRoom)
 
  // get booked room
  router.get("/booked",verifyAdmin,bookedRoom)

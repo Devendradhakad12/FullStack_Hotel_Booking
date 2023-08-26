@@ -4,7 +4,7 @@
     padding: 0;
     width: 100%;
     overflow: hidden;
-    height: 860px;
+    height: 960px;
 
     .alert {
         margin: 15px auto;
@@ -144,7 +144,7 @@
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:650px) {
     .mainBodyDiv {
         .center {
             width: 90%;

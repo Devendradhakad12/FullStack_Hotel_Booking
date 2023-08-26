@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./home.scss";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthCotext";
 function Home() {
+
+  const {user,error,token} = useContext(AuthContext)
+  //console.log(user ? user.details :"")
+
+
+
   return (
     <div className="home">
       <div className="homeMainDiv">
@@ -60,13 +67,13 @@ function Home() {
           }}
         >
           <div className="dn1Img">
-         <Link to="/delux">   <img
+         <Link to="/rooms/delux">   <img
               src="https://media.cnn.com/api/v1/images/stellar/prod/140127103345-peninsula-shanghai-deluxe-mock-up.jpg?q=w_2226,h_1449,x_0,y_0,c_fill"
               alt="Delux"
             /></Link>
           </div>
           <div className="dn1H3">
-            <Link to="/delux" className="hlink">
+            <Link to="/rooms/delux" className="hlink">
               Delux Room
             </Link>
           </div>
@@ -82,12 +89,12 @@ function Home() {
           }}
         >
           <div className="dn2H3">
-            <Link to="/rooms" className="hlink">
+            <Link to="/rooms/nondelux" className="hlink">
               Normal Room
             </Link>
           </div>
           <div className="dn2Img">
-        <Link to="/rooms">    <img
+        <Link to="/rooms/nondelux">    <img
               src="https://media.istockphoto.com/id/627892060/photo/hotel-room-suite-with-view.jpg?s=612x612&w=0&k=20&c=YBwxnGH3MkOLLpBKCvWAD8F__T-ypznRUJ_N13Zb1cU="
               alt="Non-Delux"
             /></Link>

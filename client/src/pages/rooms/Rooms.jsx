@@ -6,7 +6,8 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangeOutlined } from "@mui/icons-material";
 import RoomList from "../../components/roomlist/RoomList";
- 
+import {useLocation, useNavigate} from 'react-router-dom' 
+
 function Rooms() {
   const [imgTog, setImgTog] = useState(false);
   const [openDate, setOpenDate] = useState(false);
@@ -15,15 +16,19 @@ function Rooms() {
       startDate: new Date(),
       endDate: new Date(),
       key: "selection",
-    },
+    }, 
   ]);
-  const [path,setPath] = useState("/getallrooms")
+  
+  const loaction = useLocation().pathname
+  const navigate = useNavigate()
+  const [path,setPath] = useState(loaction == "/rooms/delux" ? "/acroom?ac=false" : loaction == "/rooms/nondelux" ? "/acroom?ac=true" : loaction == "/rooms" ? "/getallrooms" : "/getallrooms")
   const [type, setType] = useState("");
   const handleSerach = () => {
     setOpenDate(false);
-    setPath(type == "ac" ? "/acroom?ac=false" : type == "nonac" ? "/acroom?ac=true" : type == "all" ? "/getallrooms" : "/getallrooms")
+    navigate(type)
+    setPath(type == "/rooms/delux" ? "/acroom?ac=false" : type == "/rooms/nondelux" ? "/acroom?ac=true" : type == "/rooms" ? "/getallrooms" : "/getallrooms")
   };
-
+  
   return (
     <div className="roomContainer">
       {!imgTog ? (
@@ -56,11 +61,12 @@ function Rooms() {
                 name="roomtype"
                 id="roomtype"
                 onChange={(e) => setType(e.target.value)}
+                value={type}
               >
                 <option>Select Room Type</option>
-                <option value="all">All Rooms</option>
-                <option value="ac">Delux</option>
-                <option value="nonac">Non-Delux</option>
+                <option value="/rooms">All Rooms</option>
+                <option value="/rooms/delux">Delux</option>
+                <option value="/rooms/nondelux">Non-Delux</option>
               </select>
             </div>
             <div className="searchBtn">

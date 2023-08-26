@@ -6,6 +6,7 @@ const RoomSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "adminId",
     },
+   
     title: {
       type: String,
       required: true,
@@ -29,6 +30,10 @@ const RoomSchema = new mongoose.Schema(
     },
     photos: {
       type: [String],
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "adminId",
     },
     unavailableDates: {
       type: [Date],

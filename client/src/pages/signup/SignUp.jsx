@@ -38,7 +38,7 @@ function SignUp() {
         const newUser = {
           ...user,
           image: url,
-          isAdmin: true,
+          adminId:"64e5af8ad19433dff5df3e7d"
         };
         const res = await axios.post(
           "http://localhost:6600/api/auth/ragister",
