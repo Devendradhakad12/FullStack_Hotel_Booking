@@ -6,7 +6,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRangeOutlined } from "@mui/icons-material";
 import RoomList from "../../components/roomlist/RoomList";
-
+ 
 function Rooms() {
   const [imgTog, setImgTog] = useState(false);
   const [openDate, setOpenDate] = useState(false);
@@ -17,10 +17,11 @@ function Rooms() {
       key: "selection",
     },
   ]);
+  const [path,setPath] = useState("/getallrooms")
   const [type, setType] = useState("");
-
   const handleSerach = () => {
     setOpenDate(false);
+    setPath(type == "ac" ? "/acroom?ac=false" : type == "nonac" ? "/acroom?ac=true" : type == "all" ? "/getallrooms" : "/getallrooms")
   };
 
   return (
@@ -57,8 +58,9 @@ function Rooms() {
                 onChange={(e) => setType(e.target.value)}
               >
                 <option>Select Room Type</option>
+                <option value="all">All Rooms</option>
                 <option value="ac">Delux</option>
-                <option value="nonAc">Non-Delux</option>
+                <option value="nonac">Non-Delux</option>
               </select>
             </div>
             <div className="searchBtn">
@@ -71,7 +73,7 @@ function Rooms() {
       )}
       <div className="roomlists">
         <div className="rooms">
-          <RoomList imgTog={imgTog} setImgTog={setImgTog} />
+          <RoomList imgTog={imgTog} setImgTog={setImgTog} path={path}/>
         </div>
       </div>
     </div>

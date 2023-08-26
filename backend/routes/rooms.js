@@ -1,5 +1,5 @@
 import  express  from "express"
-import {  acRoom, bookedRoom, bookedRoomDelete, createRoom, deleteRoom, getRoom, getbyidRoom, updateRoom } from "../controllers/room.js"
+import {  acRoom, bookedRoom, bookedRoomDelete, createRoom, deleteRoom, getAllRoom, getRoom, getbyidRoom, updateRoom } from "../controllers/room.js"
 import { verifyAdmin, verifyUser } from "../utils/verifyUser.js"
 
 
@@ -10,6 +10,9 @@ import { verifyAdmin, verifyUser } from "../utils/verifyUser.js"
 
  //get room
  router.get("/",verifyAdmin,getRoom) 
+ 
+ //get all room
+ router.get("/getallrooms",getAllRoom) 
 
  //delete room
  router.delete("/delete/:id",deleteRoom)//verifyAdmin,

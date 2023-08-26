@@ -11,10 +11,19 @@ export const createRoom = async (req, res, next) => {
   }
 }; 
 
-// get all room
+// get all room admin site
 export const getRoom = async (req, res, next) => {
   try {
     const rooms = await RoomSchema.find({adminId:req.user.id});
+    res.status(200).json(rooms);
+  } catch (err) {
+    next(err)
+  }
+};
+// get all room client side
+export const getAllRoom = async (req, res, next) => {
+  try {
+    const rooms = await RoomSchema.find();
     res.status(200).json(rooms);
   } catch (err) {
     next(err)
