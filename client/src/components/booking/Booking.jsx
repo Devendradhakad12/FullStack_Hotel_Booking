@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthCotext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./booking.scss";
 import { DateRangeOutlined, CloseRounded } from "@mui/icons-material";
 import { DateRange } from "react-date-range";
@@ -42,6 +42,11 @@ const BookFunc = ({ roomid, userid, price }) => {
     return daydiff;
   };
   const days = dayDiff(dates[0].startDate, dates[0].endDate);
+
+  const navigate = useNavigate()
+  const handleClick = ()=>{
+navigate("/reserverooms")
+  }
 
   return (
     <div className="bookingMainDiv">
@@ -86,7 +91,7 @@ const BookFunc = ({ roomid, userid, price }) => {
             <div>TotalePrice : {days * price}</div>
           </div>
           <div className="bookingbtn">
-            <button>Reserve</button>
+            <button onClick={handleClick} >Reserve</button>
           </div>
         </div>
       )}
