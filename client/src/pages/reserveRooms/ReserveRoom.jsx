@@ -26,7 +26,7 @@ function ReserveRoom() {
         `http://localhost:6600/api/rooms/updateroom/${roomid}`,
         {
           userId: null,
-          unavailableDates: [],
+          unavailableDates: [], 
           booking: false,
         },
         config
@@ -94,10 +94,13 @@ function ReserveRoom() {
                   </div>
                   <div className="unavDate">
                     <p>
-                      <span className="roomDes">Unavailable : </span>
+                      <span className="roomDes">Reserve : </span>
+                   
                       {room.unavailableDates.map((dt) => {
-                        return <div>{dt.split(":")[0].split("T")[0]}</div>
+                        return <span>{dt.split(":")[0].split("T")[0]} 🚀 </span>
                       })}
+                    
+                   
                     </p>
                   </div>
                 </div>

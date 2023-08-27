@@ -35,7 +35,7 @@
                left: 23%;
                z-index: 15;
               
-            }
+            } 
         }
         .datesDiv{
             margin-top: 25px;
@@ -55,4 +55,28 @@
             }
         }
   
+}
+@media screen and (max-width:650px) {
+    
+  .bookingMainDiv{
+    .rDate {
+        width: 100%;
+        padding: 2px 35px;
+    
+        .headerSearchText {
+            padding: 10px 10px;
+    
+        }
+    
+        .date {
+    
+            position: absolute;
+            top: 259px;
+            left: 5%;
+    
+        }
+    }
+
+  }   
+ 
 }

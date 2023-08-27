@@ -104,7 +104,7 @@ const BookFunc = ({ roomid, userid, price,token }) => {
           dates[0].endDate,
           "dd/MM/yyyy"
         )}`}</span>
-        {openDate && (
+        {openDate && ( 
           <DateRange
             editableDateInputs={true}
             onChange={(item) => setDates([item.selection])}

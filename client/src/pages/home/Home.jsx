@@ -7,7 +7,7 @@ function Home() {
 
   const {user,error,token} = useContext(AuthContext)
   //console.log(user ? user.details :"")
-
+ 
 
 
   return (
@@ -17,7 +17,7 @@ function Home() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            transition={{ duration: 2 }}
+            transition={{ duration: 1 }}
             variants={{
               visible: { opacity: 1, scale: 1 },
               hidden: { opacity: 0, scale: 0.1 },
@@ -30,7 +30,7 @@ function Home() {
             className="homeP"
             initial="hidden"
             whileInView="visible"
-            transition={{ duration: 2 }}
+            transition={{ duration: 1 }}
             variants={{
               visible: { opacity: 1, scale: 1 },
               hidden: { opacity: 0, scale: 3 },
@@ -42,7 +42,7 @@ function Home() {
             className="homeLinkDiv"
             initial="hidden"
             whileInView="visible"
-            transition={{ duration: 2,delay:2 }}
+            transition={{ duration: 1,delay:1 }}
             variants={{
               visible: { opacity: 1, y: 1 },
               hidden: { opacity: 0, y: 30 },
@@ -60,7 +60,7 @@ function Home() {
         <motion.div className="dn1"
           initial="hidden"
           whileInView="visible"
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
           variants={{
             visible: { opacity: 1, y: 1 },
             hidden: { opacity: 0, y: 100 },
@@ -79,25 +79,30 @@ function Home() {
           </div>
         </motion.div>
 
-        <motion.div className="dn2"
+        <motion.div className="dn1"
           initial="hidden"
           whileInView="visible"
-          transition={{ duration: 2 }}
+          transition={{ duration: 1 }}
           variants={{
             visible: { opacity: 1, y: 1 },
             hidden: { opacity: 0, y: -150 },
           }}
         >
-          <div className="dn2H3">
+          <div className="dn1H3D">
             <Link to="/rooms/nondelux" className="hlink">
               Normal Room
             </Link>
           </div>
-          <div className="dn2Img">
+          <div className="dn1Img">
         <Link to="/rooms/nondelux">    <img
               src="https://media.istockphoto.com/id/627892060/photo/hotel-room-suite-with-view.jpg?s=612x612&w=0&k=20&c=YBwxnGH3MkOLLpBKCvWAD8F__T-ypznRUJ_N13Zb1cU="
               alt="Non-Delux"
             /></Link>
+          </div>
+          <div className="dn1H3M">
+            <Link to="/rooms/nondelux" className="hlink">
+              Normal Room
+            </Link>
           </div>
         </motion.div>
       </div>

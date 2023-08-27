@@ -2,8 +2,9 @@
 
 .home {
     width: 100%;
-    height: 100vh;
-
+    height: 100%;
+   // background-color: color.$bg;
+ 
     .homeMainDiv {
         display: flex;
         justify-content: center;
@@ -11,12 +12,17 @@
         width: 100%;
         height: 70%;
         padding-top: 100px;
-        background-color: color.$gold;
+        position: relative;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        margin: auto;
+
 
         .container {
             position: relative;
             line-height: 120px;
             text-align: center;
+         
 
 
             .homeH1 {
@@ -32,6 +38,7 @@
             }
 
             .homeLinkDiv {
+           
                 .hllink {
                     text-decoration: none;
                     color: black;
@@ -49,79 +56,58 @@
                 }
             }
         }
-
-        .container::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 80%;
-            top: 0;
-            left: 100px;
-            border-right: 6px solid color.$blue;
-            border-radius: 14px;
-            z-index: -2;
-
-
-        }
     }
-
+    .homeMainDiv::before{
+        content: "";
+        position: absolute;
+        background: url("../../assets/lobby-346426_1280.jpg");
+       background-size: cover;
+       background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+     
+        
+    }
     .dnRoomDiv {
-
+        margin-top: 60px;
+        padding-bottom: 50px;
+     //   background-color: aqua;
         .dn1 {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 20px;
+            padding: 20px;
+            gap: 40px;
 
             .dn1Img {
                 img {
-                    width: 200px;
-                    height: 200px;
+                    width: 400px;
+                    height: 240px;
                     object-fit: cover;
                     margin: 10px 20px;
                     border-radius: 10px;
                     transition: all 0.5s;
-
                     &:hover {
                         transform: scale(1.1);
                         cursor: pointer;
                     }
                 }
             }
-
             .dn1H3 {
                 .hlink {
-                    font-size: 30px;
+                    font-size: 40px;
                     text-decoration: none;
                     font-weight: 700;
                     color: black;
                     position: relative;
                 }
             }
-        }
-
-        .dn2 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .dn2Img {
-                img {
-                    width: 200px;
-                    height: 200px;
-                    object-fit: cover;
-                    margin: 10px 20px;
-                    border-radius: 10px;
-                    transition: all 0.5s;
-
-                    &:hover {
-                        transform: scale(1.1);
-                        cursor: pointer;
-                    }
-                }
-            }
-
-            .dn2H3 {
+            .dn1H3D {
                 .hlink {
                     font-size: 30px;
                     text-decoration: none;
@@ -130,8 +116,17 @@
                     position: relative;
                 }
             }
+            .dn1H3M {
+                display: none;
+                .hlink {
+                    font-size: 40px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    color: black;
+                    position: relative;
+                }
+            }
         }
-
     }
 
 }
@@ -155,23 +150,24 @@
 
 
 // media query----------------------------------------
-@media screen and (max-width:600px) {
+@media screen and (max-width:650px) {
     .home {
         .homeMainDiv {
+            width: 100%;
             .container {
                 position: relative;
-                line-height: 120px;
+                line-height: 100px;
                 text-align: center;
 
                 .homeH1 {
                     h1 {
-                        font-size: 4rem;
+                        font-size: 3rem;
                     }
                 }
 
                 .homeP {
                     p {
-                        font-size: 1.4rem;
+                        font-size: 1.2rem;
                     }
                 }
             }
@@ -180,6 +176,64 @@
                 display: none;
             }
         }
+        
+    .dnRoomDiv {
+
+        .dn1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            gap: 0px;
+            margin: auto;
+
+            .dn1Img {
+                img {
+                    width: 110%;
+                    height: 170px;
+                    object-fit: cover;
+                    margin: 10px auto;
+                    border-radius: 10px;
+                    transition: all 0.5s;
+                    &:hover {
+                        transform: scale(1.1);
+                        cursor: pointer;
+                    }
+                }
+            }
+            .dn1H3 {
+               
+                .hlink {
+                    font-size: 30px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    color: black;
+                    position: relative;
+                }
+            }
+            .dn1H3D {
+                display: none;
+                .hlink {
+                    font-size: 30px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    color: black;
+                    position: relative;
+                }
+            }
+            .dn1H3M {
+                display: inline;
+                .hlink {
+                    font-size: 30px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    color: black;
+                    position: relative;
+                }
+            }
+        }
+    }
     }
 
 

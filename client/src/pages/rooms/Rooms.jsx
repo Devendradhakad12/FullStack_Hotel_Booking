@@ -44,12 +44,12 @@ function Rooms() {
                 "dd/MM/yyyy"
               )}`}</span>
               {openDate && (
-                <DateRange
+                <DateRange 
                   editableDateInputs={true}
                   onChange={(item) => setDates([item.selection])}
                   moveRangeOnFirstSelection={false}
                   ranges={dates}
-                  className="date"
+                  className="date" 
                   minDate={new Date()}
                 />
               )}

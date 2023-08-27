@@ -1,9 +1,9 @@
  @use "../../styles/colors" as color;
 
  .roomContainer {
-     //background-color: red;
+    // background-color: color.$bg;
      width: 100%;
-     height: 100vh;
+     height: 100%;
      display: flex;
      align-items: center;
      flex-direction: column;
@@ -20,6 +20,7 @@
          justify-content: space-evenly;
          padding-left: 10px;
         z-index: 14;
+        padding: 30px;
       
 
          .roomDate {
@@ -48,7 +49,7 @@
              }
          }
 
-
+ 
 
          .selectType {
              display: flex;
@@ -80,7 +81,7 @@
                      background-color: color.$blue;
                      color: white;
                      cursor: pointer;
-
+ 
                      &:hover {
                          background-color: rgb(13, 99, 238);
                      }
@@ -109,7 +110,7 @@
              flex-direction: column;
              gap: 20px;
              padding: 10px;
-
+ 
 
              .roomDate {
 
@@ -124,8 +125,8 @@
                      .date {
 
                          position: absolute;
-                         top: 229px;
-                         left: 15%;
+                         top: 259px;
+                         left: 5%;
 
                      }
                  }
