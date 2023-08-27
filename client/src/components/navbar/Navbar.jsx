@@ -28,6 +28,11 @@ function Navbar() {
                 Rooms
               </Link>
             </li>
+            <li>
+              <Link to="/reserverooms" className="link">
+               Reserve Rooms
+              </Link>
+            </li>
         {
           !user &&  <li>
           <Link to="/login" className="link">
@@ -86,6 +91,11 @@ function Navbar() {
                 <li>
                   <Link to="/rooms" className="link" onClick={()=>setToggle(!toggle)}>
                     Rooms
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/reserverooms" className="link" onClick={()=>setToggle(!toggle)}>
+                   Reserve Rooms
                   </Link>
                 </li>
               {

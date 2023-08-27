@@ -3,7 +3,7 @@ import env from 'dotenv'
 env.config()
 
 
-// verify token
+// verify token 
 export const verifyToken = async (req, res, next) => {
     const token = req.header("auth-token");
     if(!token) return res.status(400).json("user not authenticeted")

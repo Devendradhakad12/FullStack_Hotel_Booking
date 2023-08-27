@@ -1,6 +1,6 @@
 import  express  from "express"
-import {  acRoom, bookedRoom, bookedRoomDelete, createRoom, deleteRoom, getAllRoom, getRoom, getbyidRoom, updateRoom } from "../controllers/room.js"
-import { verifyAdmin, verifyUser } from "../utils/verifyUser.js"
+import {  acRoom, bookedRoom, bookedRoomDelete, createRoom, deleteRoom, getAllRoom, getRoom, getbyidRoom, reserveRoom, updateRoom } from "../controllers/room.js"
+import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyUser.js"
 
 
  const router = express.Router()
@@ -21,10 +21,13 @@ import { verifyAdmin, verifyUser } from "../utils/verifyUser.js"
  router.get("/getbyid/:id",getbyidRoom) 
 
  //update room
- router.put("/updateroom/:id",verifyUser,updateRoom)
-
+ router.put("/updateroom/:id",updateRoom)//verifyUser,
+ 
  // get booked room
  router.get("/booked",verifyAdmin,bookedRoom)
+
+ // get reserve room
+ router.get("/reserve",reserveRoom)
 
  // delete booked room 
  router.delete("/bookedrooms/:id",bookedRoomDelete)

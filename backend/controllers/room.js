@@ -23,7 +23,7 @@ export const getRoom = async (req, res, next) => {
 // get all room client side
 export const getAllRoom = async (req, res, next) => {
   try {
-    const rooms = await RoomSchema.find();
+    const rooms = await RoomSchema.find({booking:false});
     res.status(200).json(rooms);
   } catch (err) {
     next(err)
@@ -35,6 +35,16 @@ export const bookedRoom = async (req, res, next) => {
   try { 
     const  bookrooms = await RoomSchema.find({booking:true,adminId:req.user.id});
     res.status(200).json(bookrooms);
+  } catch (err) {
+    next(err)
+  }
+};
+// get reserve room
+export const reserveRoom = async (req, res, next) => {
+  const userid =  req.query.user
+  try { 
+    const  reservrooms = await RoomSchema.find({booking:true,userId:userid});
+    res.status(200).json(reservrooms);
   } catch (err) {
     next(err)
   }
@@ -58,7 +68,7 @@ export const getbyidRoom = async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-}; 
+};  
 
 // update room
 export const updateRoom = async (req, res, next) => {
@@ -86,7 +96,7 @@ export const bookedRoomDelete = async (req, res, next) => {
 export const acRoom = async (req, res, next) => {
   const acR = req.query.ac
   try {
-    let updatedRoom =  await RoomSchema.find({ac:acR});
+    let updatedRoom =  await RoomSchema.find({ac:acR,booking:false});
     res.status(200).json(updatedRoom) 
   } catch (err) {
      next(err)

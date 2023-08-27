@@ -8,13 +8,13 @@ import { DateRange } from "react-date-range";
 import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-
+import axios from "axios";
 function Booking({ roomid, price }) {
-  const { user } = useContext(AuthContext);
+  const { user,token } = useContext(AuthContext);
   return (
     <div>
       {user ? (
-        <BookFunc roomid={roomid} userid={user.details._id} price={price} />
+        <BookFunc roomid={roomid} userid={user.details._id} price={price}  token={token}/>
       ) : (
         <Link className="loglink" to="/login">
           Login
@@ -24,7 +24,10 @@ function Booking({ roomid, price }) {
   );
 }
 
-const BookFunc = ({ roomid, userid, price }) => {
+
+//! book function -----------------------------
+const BookFunc = ({ roomid, userid, price,token }) => {
+
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
     {
@@ -34,6 +37,8 @@ const BookFunc = ({ roomid, userid, price }) => {
     },
   ]);
 
+
+  // count selected days
   const dayDiff = (start, end) => {
     const starttime = start.getTime();
     const endtime = end.getTime();
@@ -43,10 +48,46 @@ const BookFunc = ({ roomid, userid, price }) => {
   };
   const days = dayDiff(dates[0].startDate, dates[0].endDate);
 
-  const navigate = useNavigate()
-  const handleClick = ()=>{
-navigate("/reserverooms")
-  }
+  // get all date range list
+  const getAllDates = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate.getTime());
+    const date = new Date(start.getTime());
+    let list = [];
+    while (date <= end) {
+      list.push(new Date(date).getTime());
+      date.setDate(date.getDate() + 1);
+    }
+    return list;
+  };
+  const allDates = getAllDates(dates[0].startDate, dates[0].endDate);
+
+  // useNavigate for navigate after reservation
+  const navigate = useNavigate();
+
+  // handle click function for reserve room
+  const config = {
+    headers: {
+      "auth-token": token,
+    },
+  };
+  const handleClick = async () => {
+    try {
+      let res = await axios.put(
+        `http://localhost:6600/api/rooms/updateroom/${roomid}`,
+        {
+          userId: userid,
+          unavailableDates: allDates,
+          booking: true,
+        }, config
+      );
+      console.log(res.data);
+      navigate("/reserverooms");
+    } catch (error) {
+      alert(error.message);
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bookingMainDiv">
@@ -91,7 +132,7 @@ navigate("/reserverooms")
             <div>TotalePrice : {days * price}</div>
           </div>
           <div className="bookingbtn">
-            <button onClick={handleClick} >Reserve</button>
+            <button onClick={handleClick}>Reserve</button>
           </div>
         </div>
       )}

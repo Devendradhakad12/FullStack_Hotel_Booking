@@ -12,7 +12,7 @@ const RoomSchema = new mongoose.Schema(
       required: true,
     },
     ac: {
-      type: Boolean, 
+      type: Boolean,  
       required: true,
     },
     maxPeople: {
