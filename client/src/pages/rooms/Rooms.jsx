@@ -28,7 +28,7 @@ function Rooms() {
     navigate(type)
     setPath(type == "/rooms/delux" ? "/acroom?ac=false" : type == "/rooms/nondelux" ? "/acroom?ac=true" : type == "/rooms" ? "/getallrooms" : "/getallrooms")
   };
-  
+   
   return (
     <div className="roomContainer">
       {!imgTog ? (
