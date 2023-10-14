@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema(
       ref: "adminId",
     },
     username: {
-      unique: true,
       type: String,
       required: true,
     },
@@ -38,7 +37,14 @@ const UserSchema = new mongoose.Schema(
     isAdmin:{
         type:Boolean,
         default:false
-    } 
+    } ,
+    resetPasswordToken:{
+      type:String
+    }
+    ,
+    resetPasswordExpire:{
+      type:Date
+    },
   } 
 );
 export default mongoose.model("User", UserSchema);

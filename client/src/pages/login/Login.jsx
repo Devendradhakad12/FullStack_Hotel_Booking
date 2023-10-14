@@ -1,56 +1,54 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./login.scss";
-//import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthCotext";
-//import { Alert } from "@mui/material";
+import toast from "react-hot-toast";
+ 
 
 function Login() {
   const navigate = useNavigate();
-  const {user,loading,error,dispatch} = useContext(AuthContext)
- 
+  const {user,loading,dispatch} = useContext(AuthContext)
   const [userdata, setUserData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
-  useEffect(()=>{
-    setTimeout(()=>{
-    dispatch({type:"LOGOUT"})
-    },3000)
-      },[error])
+ 
 
   const handlesubmit = async (e)=>{
     e.preventDefault()
     dispatch({type:"LOGIN_START"})
     try {
       const res = await axios.post("http://localhost:6600/api/auth/login",userdata)
-     dispatch({type:"LOGIN_SUCCESFUL",payload:res.data,token:res.data.authToken})
+     dispatch({type:"LOGIN_SUCCESFUL",payload:res.data.details,token:res.data.authToken})
+     toast.success("Login Successfuly")
      navigate('/')
     } catch (error) {
+      toast.error(error.response.data)
+      console.log(error)
       dispatch({type:"LOGIN_FAILD",payload:{message:error.response.data}})
     }
 
   }
- 
+  
 
   return (
     <div className="mainBodyDiv">
-             {error ? <Alert severity="error" className="alert">{error.message}</Alert> : ""}
+      
       <div className="center">
         <h1>Login</h1>
         <form onSubmit={handlesubmit}>
           <div className="usnam">
-            <label>Username*</label>
+            <label>Email*</label>
             <input
               onChange={(e) => {
-                setUserData({ ...userdata, username: e.target.value });
+                setUserData({ ...userdata, email: e.target.value });
               }}
-              value={userdata.username}
+              value={userdata.email}
               required
-              type="text"
+              type="email"
               placeholder=" Type your name"
-              id="username"
+              id="email"
             />
           </div>
           <div className="pass">
@@ -70,7 +68,9 @@ function Login() {
           <button type="submit">{loading ? "Please wait.......":"Sumbit"}</button>
           </div>
         </form>
-
+          <div className="forgotPassword">
+            <Link to="/forgot">Forgot Password</Link>
+          </div>
         <div className="sign">
           New Admin? <Link to="/signup"> Signup</Link>
         </div>

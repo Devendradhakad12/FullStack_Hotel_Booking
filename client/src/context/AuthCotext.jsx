@@ -1,10 +1,10 @@
 import { createContext, useEffect, useReducer } from "react";
 
 const INTIAL_VALUE = {
-    user: JSON.parse(localStorage.getItem("user")) || null,
-   token:JSON.parse(localStorage.getItem("token")) || null,
+    user: JSON.parse(localStorage.getItem("us")) || null,
+   token:JSON.parse(localStorage.getItem("aut")) || null,
   loading: false,
-  error: false,
+  error:false,
 };
 const AuthContext = createContext();
 const reducer = (state, action) => {
@@ -39,21 +39,21 @@ const reducer = (state, action) => {
         error: false,
       };
     default:
-      return state;
+      return state; 
   }
 };
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INTIAL_VALUE);
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(state.user));
-    localStorage.setItem("token", JSON.stringify(state.token));
+    localStorage.setItem("us", JSON.stringify(state.user));
+    localStorage.setItem("aut", JSON.stringify(state.token));
   }, [state.user,state.token]);
   return (
     <AuthContext.Provider
       value={{
         user: state.user,
-        token: state.token,
+        token: state.token, 
         loading: state.loading,
         error: state.error,
         dispatch,

@@ -34,5 +34,5 @@ import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyUser.js"
 
  // get ac room
  router.get("/acroom",acRoom)
- 
+  
  export default router   

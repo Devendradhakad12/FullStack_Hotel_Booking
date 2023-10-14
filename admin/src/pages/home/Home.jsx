@@ -4,8 +4,13 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.scss";
 import Chart from "../../components/chart/Chart";
 import Feature from "../../components/feature/Feature";
-import {KingBedOutlined,KeyboardArrowUpOutlined} from "@mui/icons-material";
+import { KingBedOutlined, KeyboardArrowUpOutlined } from "@mui/icons-material";
+import { useFetch } from "../../hooks/useFetch";
+
 function Home() {
+  const { data:user, loading, error } = useFetch(`/users`)
+ 
+ 
   return (
     <div className="home">
       <Sidebar />
@@ -15,42 +20,41 @@ function Home() {
           <div className="widgetsContainer">
             <div className="widgets">
               <div className="topW">
-                <p className="wP">New Booking</p>
+                <p className="wP">Bookings</p>
                 <KingBedOutlined className="wIcon" />
               </div>
               <div className="boW">
-                 <p>100</p>
-                 <div style={{color:"green"}}><KeyboardArrowUpOutlined/> <span className="boWAmount">300%</span></div>
+                <p>100</p>
+                <div style={{ color: "green" }}>
+                  <KeyboardArrowUpOutlined />{" "}
+                  <span className="boWAmount">300%</span>
+                </div>
               </div>
             </div>
             <div className="widgets">
-            <div className="topW">
+              <div className="topW">
                 <p className="wP">Earnings</p>
                 <KingBedOutlined className="wIcon" />
               </div>
               <div className="boW">
-                 <p>100</p>
-                 <div style={{color:"green"}}><KeyboardArrowUpOutlined/> <span className="boWAmount">300%</span></div>
+                <p>100</p>
+                <div style={{ color: "green" }}>
+                  <KeyboardArrowUpOutlined />{" "}
+                  <span className="boWAmount">300%</span>
+                </div>
               </div>
             </div>
             <div className="widgets">
-            <div className="topW">
-                <p className="wP">Check In</p>
+              <div className="topW">
+                <p className="wP">Customer</p>
                 <KingBedOutlined className="wIcon" />
               </div>
               <div className="boW">
-                 <p>100</p>
-                 <div style={{color:"green"}}><KeyboardArrowUpOutlined/> <span className="boWAmount">300%</span></div>
-              </div>
-            </div>
-            <div className="widgets">
-            <div className="topW">
-                <p className="wP">Check Out</p>
-                <KingBedOutlined className="wIcon" />
-              </div>
-              <div className="boW">
-                 <p>100</p>
-                 <div style={{color:"green"}}><KeyboardArrowUpOutlined/> <span className="boWAmount">300%</span></div>
+                <p>{user?.length}</p>
+                <div style={{ color: "green" }}>
+                  <KeyboardArrowUpOutlined />{" "}
+                  <span className="boWAmount">{user?.length * 100}%</span>
+                </div>
               </div>
             </div>
           </div>

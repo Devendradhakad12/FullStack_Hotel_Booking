@@ -12,8 +12,10 @@ import Login from "./pages/login/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import SignUp from "./pages/signup/SignUp";
+import { Toaster } from "react-hot-toast";
 function App() {
   const { user } = useContext(AuthContext);
+
   function Provider({ children }) {
     if (!user) {
       return <Navigate to="/login" />;
@@ -117,6 +119,7 @@ function App() {
             />
           </Route>
         </Routes>
+        <Toaster />
       </BrowserRouter>
     </>
   );

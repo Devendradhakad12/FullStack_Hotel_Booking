@@ -4,11 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { MenuOpen, CloseRounded } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../context/AuthCotext";
+import toast from "react-hot-toast";
 function Navbar() {
   const [toggle, setToggle] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleLogout = () => {
+    toast.success("Logout successfuly")
     navigate("/");
     dispatch({ type: "LOGOUT" });
   };

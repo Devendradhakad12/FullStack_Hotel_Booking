@@ -1,33 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./signUp.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { FileUploadOutlined } from "@mui/icons-material";
 import { userInputs } from "../../constants/formSource";
-import { Alert } from "@mui/material";
+import { Ai } from "../../../AI";
+import { AuthContext } from "../../context/AuthCotext";
+import toast from "react-hot-toast";
 
 function SignUp() {
+
   const navigate = useNavigate();
+  const { dispatch,loading } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [file, setFile] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setError(null);
-    }, 3000);
-  }, [error,success]);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch({type:"LOGIN_START"})
     if (file) {
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "ko8fnbhn");
       data.append("cloud_name", "dvkfio4zq");
-      setLoading(true);
       try {
         const uploadRes = await axios.post(
           "https://api.cloudinary.com/v1_1/dvkfio4zq/image/upload",
@@ -38,38 +34,35 @@ function SignUp() {
         const newUser = {
           ...user,
           image: url,
-          adminId:"64e5af8ad19433dff5df3e7d"
+          adminId: Ai,
         };
         const res = await axios.post(
           "http://localhost:6600/api/auth/ragister",
           newUser
         );
-        setSuccess({ message: "You are Successfuly registerd" });
-        setLoading(false);
-        navigate(`/login`);
+        console.log(res.data)
+        dispatch({
+          type: "LOGIN_SUCCESFUL",
+          payload: res.data.details,
+          token: res.data.authToken,
+        });
+        toast.success("Login Successfuly");
+        navigate(`/`);
       } catch (err) {
-        setLoading(false);
-        err == undefined
-          ? setError({ message: "network error" })
-          : setError({ message: err.response.data.message });
-        //console.log(err)
+        toast.error(err.response.data);
+        console.log(err);
+        dispatch({
+          type: "LOGIN_FAILD",
+          payload: { message: err.message },
+        });
       }
-      setLoading(false);
-    } else {
-      setError({ message: " please select image" });
+    }else{
+      toast.error("Please Select Image")
     }
   };
 
   return (
     <div className="mainBodyDiv">
-      {error ? (
-        <Alert severity="error" className="alert">
-          {error.message}
-        </Alert>
-      ) : (
-        ""
-      )}
-      {success ? <Alert severity="success">{success.message}</Alert> : ""}
       <div className="center">
         <h1>Sign Up</h1>
 
