@@ -7,22 +7,19 @@ import { FileUploadOutlined } from "@mui/icons-material";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 function NewRoom({ inputs }) {
   const path = useLocation().pathname.split("/")[1];
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState({});
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState([]);
   const { token } = useContext(AuthContext);
 
-  const config = {
-    headers: {
-      "auth-token": token,
-    },
-  };
- 
- // console.log(config);
-  //console.log(token); 
+
+
+  // console.log(config);
+  //console.log(token);
 
   const habdleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +27,7 @@ function NewRoom({ inputs }) {
       setLoading(true);
       try {
         const imgList = await Promise.all(
-          Object.values(file).map(async (file) => {
+          file.map(async (file) => {
             const data = new FormData();
             data.append("file", file);
             data.append("upload_preset", "ko8fnbhn");
@@ -48,17 +45,23 @@ function NewRoom({ inputs }) {
           ...room,
           photos: imgList,
         };
+        const config = {
+          headers: {
+            "auth-token": token,
+          },
+        };
         const res = await axios.post(
           "http://localhost:6600/api/rooms/create",
-          roomData,config
+          roomData,
+          config
         );
-        alert("Room Created");
+        toast.success("Room Crated");
         console.log(res.data);
         setLoading(false);
         window.location.reload(true);
       } catch (error) {
         console.log(error);
-        alert(error.message);
+        toast.error(error.message)
         setLoading(false);
       }
     } else {
@@ -80,17 +83,22 @@ function NewRoom({ inputs }) {
 
         <div className="roomInputs">
           <div className="uesrImgUp">
-            <label htmlFor="file">
-              <img
+            {
+              file?.map((fil,i)=>{
+           return <img
+           key={i}
                 src={
-                  file
-                    ? URL.createObjectURL(file[0])
-                    : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  fil
+                    ? URL.createObjectURL(fil)
+                    : "https://i.pinimg.com/564x/a0/e6/29/a0e629769ae2120324ed69f4f27526de.jpg"
                 }
-                alt="user image"
-                className="userImage"
+                alt="room image"
+                className="roomimage"
               />
-
+              })
+            }
+       
+            <label htmlFor="file">
               <p>
                 Upload Image <FileUploadOutlined />*
               </p>
@@ -102,7 +110,7 @@ function NewRoom({ inputs }) {
               name="file"
               style={{ display: "none" }}
               required
-              onChange={(e) => setFile(e.target.files)}
+              onChange={(e) => setFile(Array.from(e.target.files))}
             />
           </div>
           <form onSubmit={habdleSubmit}>

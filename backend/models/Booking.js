@@ -2,47 +2,43 @@ import mongoose from "mongoose";
 
 const BookingSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    room:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"Room",
+      required:true
     },
-   
-    title: {
-      type: String,
-      required: true,
+    customer:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"User",
+      required:true
     },
-    ac: {
-      type: Boolean,  
-      required: true,
+    checkIn:{
+      type:Date,
+      required:true
     },
-    maxPeople: {
+    checkout:{
+      type:Date,
+      required:true
+    },
+    paymentInfo: {
+      id: {
+        type: String,
+        required: [true, "Payment id is Required"],
+      },
+      status: {
+        type: String,
+        required: [true, "payment Status is Required"],
+      },
+    },
+    paidAt: {
+      type: Date,
+      required: [true, " PaidAt is Required"],
+    },
+    roomRent:{
       type: Number,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    }, 
-    roomNumber: {
-      unique: true,
-      type: Number,
-      required: true,
-    },
-    photos: {
-      type: [String],
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "adminId",
-    },
-    unavailableDates: {
-      type: [Date],
-    },
-    booking: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  { timestamps: true }
+      required: [true, " item price is Required"],
+    }
+
+  }
 );
 export default mongoose.model("Booking", BookingSchema);

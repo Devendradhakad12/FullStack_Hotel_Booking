@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import SignUp from "./pages/signup/SignUp";
 import { Toaster } from "react-hot-toast";
+import Forgot from "./pages/forgotPassword/Forgot";
 function App() {
   const { user } = useContext(AuthContext);
 
@@ -118,6 +119,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="/forgot"  element={<Forgot />}/>
         </Routes>
         <Toaster />
       </BrowserRouter>

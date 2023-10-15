@@ -98,10 +98,10 @@ function RoomList({ setImgTog, path }) {
                     </p>
                   </div>
                   <div className="unavDate">
-                    <p>
+                 {/*    <p>
                       <span className="roomDes">Unavailable : </span>
                          {room.unavailableDates[0]}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
                 <div className="roombtns">

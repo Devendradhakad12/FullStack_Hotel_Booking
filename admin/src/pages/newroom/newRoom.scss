@@ -38,9 +38,12 @@
             width: 800px;
             margin: auto;
 
-            .uesrImgUp {
+            .uesrImgUp{
           text-align: center;
-             
+             .roomimage{
+                width: 100px;
+                margin: 1px 20px;
+             }
                 label {
                     cursor: pointer;
                      display: flex;

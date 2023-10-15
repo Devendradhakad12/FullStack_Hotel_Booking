@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext,  useState } from "react";
 import "./login.scss";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -91,6 +91,10 @@ function Login() {
             </button>
           </div>
         </form>
+
+        <div className="sign">
+        <Link to="/forgot">Forgot Password</Link>
+        </div>
 
         <div className="sign">
           New Admin? <Link to="/signup"> Signup</Link>
