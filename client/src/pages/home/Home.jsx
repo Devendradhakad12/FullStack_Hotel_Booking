@@ -49,7 +49,7 @@ function Home() {
             }}
           >
             <Link to="/rooms" className="hllink">
-              Let's Start
+              BOOK A STAY
             </Link>
           </motion.div>
         </div>

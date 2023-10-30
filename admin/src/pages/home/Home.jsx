@@ -59,11 +59,11 @@ function Home() {
             </div>
           </div>
 
-          <div className="chartContainer">
+       {/*    <div className="chartContainer">
             <Feature />
 
             <Chart />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
